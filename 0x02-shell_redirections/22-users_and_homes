@@ -1,0 +1,3 @@
+#!/bin/bash
+getent passwd | sort -t ':' -k 1,1 -b | cut -d ':' -f 1,6
+
