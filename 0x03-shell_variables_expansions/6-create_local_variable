@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -E '^[^#]*export [A-Z_]+=' /etc/profile /etc/inputrc ~/.bashrc /etc/profile.d/* 2>/dev/null
+echo "BEST=\"School\"" > script.sh
