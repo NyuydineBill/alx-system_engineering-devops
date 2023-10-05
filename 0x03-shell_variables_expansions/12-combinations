@@ -1,2 +1,3 @@
 #!/bin/bash
-echo {a..n}{a..z} {p..z}{a..z} | tr ' ' '\n'
+printf "%s\n" {a..n}{a..z} {a..o}{a..z} {p..z}{a..z} | grep -v "oo"
+
