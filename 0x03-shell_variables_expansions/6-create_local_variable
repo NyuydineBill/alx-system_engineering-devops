@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "BEST=\"School\"" > script.sh
+echo "BEST=School" > script.sh

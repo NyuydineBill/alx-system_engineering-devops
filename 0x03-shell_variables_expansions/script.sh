@@ -1,1 +1,1 @@
-BEST="School"
+BEST=School
