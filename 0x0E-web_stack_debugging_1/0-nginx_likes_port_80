@@ -1,26 +1,8 @@
-#!/bin/bash
-
-# Step 1: Check Nginx configuration
-nginx_config="/etc/nginx/sites-available/default"
-if ! grep -q "listen 80;" "$nginx_config"; then
-    echo "listen 80;" | sudo tee -a "$nginx_config" > /dev/null
-fi
-
-# Step 2: Verify conflicting services
-conflicting_service=$(sudo netstat -tuln | grep ":80 ")
-if [ -n "$conflicting_service" ]; then
-    echo "Error: Another service is already listening on port 80."
-    echo "$conflicting_service"
-    exit 1
-fi
-
-# Step 3: Restart Nginx
-sudo systemctl restart nginx
-
-# Verify Nginx is listening on port 80
-if ! curl -sI 0:80 | grep -q "HTTP/1.1 200 OK"; then
-    echo "Error: Nginx is not listening on port 80 after restart."
-    exit 1
-fi
-
-echo "Nginx is now listening on port 80."
+#!/usr/bin/env bash
+# Setting up server to curl port 80 with no issues
+apt-get update
+apt-get -y install curl
+rm /etc/nginx/sites-available/*
+rm /etc/nginx/sites-enabled/*~
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
